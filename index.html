@@ -1,100 +1,170 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <title>Ambience</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Required meta tags -->
-    <link rel="stylesheet" href="style.css" ><meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Changed this part! -->
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" 
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Theme -->
+    <link rel="stylesheet" href="./theme/css/main.css">
+
+    <title>Ambience</title>
 </head>
-
 <body>
-    <h1 class="paragraph">Just Play!</h1>
-
-    <div class="music-container" id="music-container">
-        <div class="music-info">
-            <h4 id="title" class="paragraph">Camp Fire</h4>
-        </div>
-        <audio loop src="sound/fire.mp3" id="audio"></audio>
-        <div class="img-container">
-            <img src="image/fire.png" alt="sound-cover" id="cover">
-        </div>
-        <div class="navigation">
-            <script>
-                var audio = new Audio("sound/fire.mp3");
-                function play() {
-                    audio.play();
-                    audio.loop =true;
-                };
-                function pause() {
-                    audio.pause();
-                };
-
-                function changevolume(amount) {
-                    
-                    audio.volume = amount;
-                }
-            </script>
-            <button onclick="play();" type="button" class="btn btn-dark"><i class="fas fa-play"></i></button>
-            <div class="divider"></div>
-            <button onclick="pause();" type="button" class="btn btn-dark"><i class="fas fa-pause"></i></button>
-            <div class="divider"></div>
-            <div class="slidecontainer">
-                <input type="range" min="0" max="1" step="0.01" class="slider" id="myRange" onchange="changevolume(this.value)">
-            </div>
-        </div>
-    </div>
-
-    <div class="music-container" id="music-container">
-        <div class="music-info">
-            <h4 id="title" class="paragraph">Thunder</h4>
-        </div>
-        <audio loop src="sound/thunder.mp3" id="audio"></audio>
-        <div class="img-container">
-            <img src="image/rain.png" alt="sound-cover" id="cover">
-        </div>
-        <div class="navigation">
-            <script>
-                var audio2 = new Audio("sound/thunder.mp3");
-                function play2() {
-                    audio2.play();
-                    audio2.loop =true;
-                };
-                function pause2() {
-                    audio2.pause();
-                };
-
-                function changevolume2(amount) {
-                    
-                    audio2.volume = amount;
-                }
-            </script>
-            <button onclick="play2();" type="button" class="btn btn-dark"><i class="fas fa-play"></i></button>
-            <div class="divider"></div>
-            <button onclick="pause2();" type="button" class="btn btn-dark"><i class="fas fa-pause"></i></button>
-            <div class="divider"></div>
-            <div class="slidecontainer">
-                <input type="range" min="0" max="1" step="0.01" class="slider" id="myRange" onchange="changevolume2(this.value)">
-            </div>
-        </div>
-    </div>
     
+    <div class="container">
 
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center align-items-center my-4">
+                <div class="page-title">Just Play</div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-6 col-md-4 col-lg-3 p-3">
+                <div class="card d-flex justify-content-center align-items-center">
+                    <div class="card-body media-container bg-camp-fire text-center py-5">
+                        <audio loop src="sound/fire.mp3"></audio>
+                        <div class="media-title">Camp Fire</div>
+                        <div class="media-button-group my-4 d-flex justify-content-center">
+                            <button id="campFirePlayButton" class="media-button mx-1" onclick="campFirePlay()">
+                                <i class="fa-solid fa-play"></i>
+                            </button>
+
+                            <button id="campFireStopButton" class="media-button mx-1" onclick="campFireStop()">
+                                <i class="fa-solid fa-stop"></i>
+                            </button>
+                        </div>
+                        <div class="media-sound-control">
+                            <input id="camp-fire-slider" class="slider" type="range" min="0" max="1" step="0.01" onchange="campFireSlider(this.value)">
+                        </div>
+                        <div class="media-sound-value-text"> 
+                            <span class="camp-fire-slider-text"> 50 </span>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-3 p-3">
+                <div class="card d-flex justify-content-center align-items-center">
+                    <div class="card-body media-container bg-thunder text-center py-5">
+                        <div class="media-title">Thunder</div>
+                        <div class="media-button-group my-4 d-flex justify-content-center">
+                            <button id="thunderPlayButton" class="media-button mx-1" onclick="thunderPlay()">
+                                <i class="fa-solid fa-play"></i>
+                            </button>
+
+                            <button id="thunderStopButton" class="media-button mx-1" onclick="thunderStop()">
+                                <i class="fa-solid fa-stop"></i>
+                            </button>
+                        </div>
+                        <div class="media-sound-control">
+                            <input id="thunder-slider" class="slider" type="range" min="0" max="1" step="0.01" onchange="thunderSlider(this.value)">
+                        </div>
+                        <div class="media-sound-value-text"> 
+                            <span class="thunder-slider-text"> 50 </span>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-3 p-3">
+                <div class="card d-flex justify-content-center align-items-center">
+                    <div class="card-body media-container bg-forest text-center py-5">
+                        <div class="media-title">Forest</div>
+                        <div class="media-button-group my-4 d-flex justify-content-center">
+                            <button id="forestPlayButton" class="media-button mx-1" onclick="forestPlay()">
+                                <i class="fa-solid fa-play"></i>
+                            </button>
+
+                            <button id="forestStopButton" class="media-button mx-1" onclick="forestStop()">
+                                <i class="fa-solid fa-stop"></i>
+                            </button>
+                        </div>
+                        <div class="media-sound-control">
+                            <input id="forest-slider" class="slider" type="range" min="0" max="1" step="0.01" onchange="forestSlider(this.value)">
+                        </div>
+                        <div class="media-sound-value-text"> 
+                            <span class="forest-slider-text"> 50 </span>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-3 p-3">
+                <div class="card d-flex justify-content-center align-items-center">
+                    <div class="card-body media-container bg-sea-waves text-center py-5">
+                        <div class="media-title">Sea Waves</div>
+                        <div class="media-button-group my-4 d-flex justify-content-center">
+                            <button id="seaWavesPlayButton" class="media-button mx-1" onclick="seaWavesPlay()">
+                                <i class="fa-solid fa-play"></i>
+                            </button>
+
+                            <button id="seaWavesStopButton" class="media-button mx-1" onclick="seaWavesStop()">
+                                <i class="fa-solid fa-stop"></i>
+                            </button>
+                        </div>
+                        <div class="media-sound-control">
+                            <input id="sea-waves-slider" class="slider" type="range" min="0" max="1" step="0.01" onchange="seaWavesSlider(this.value)">
+                        </div>
+                        <div class="media-sound-value-text"> 
+                            <span class="sea-waves-slider-text"> 50 </span>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-3 p-3">
+                <div class="card d-flex justify-content-center align-items-center">
+                    <div class="card-body media-container bg-swamp text-center py-5">
+                        <div class="media-title">Swamp</div>
+                        <div class="media-button-group my-4 d-flex justify-content-center">
+                            <button id="swampPlayButton" class="media-button mx-1" onclick="swampPlay()">
+                                <i class="fa-solid fa-play"></i>
+                            </button>
+
+                            <button id="swampStopButton" class="media-button mx-1" onclick="swampStop()">
+                                <i class="fa-solid fa-stop"></i>
+                            </button>
+                        </div>
+                        <div class="media-sound-control">
+                            <input id="swamp-slider" class="slider" type="range" min="0" max="1" step="0.01" onchange="swampSlider(this.value)">
+                        </div>
+                        <div class="media-sound-value-text"> 
+                            <span class="swamp-slider-text"> 50 </span>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
 
+    <!-- JQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" 
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <!-- Media Controller -->
+    <script src="./theme/js/mediaController.js"></script>
 </body>
-
 </html>
