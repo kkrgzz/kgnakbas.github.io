@@ -1,8 +1,8 @@
 let campFireAudio = new Audio("sound/fire.mp3");
 let thunderAudio = new Audio("sound/thunder.mp3");
-let forestAudio = new Audio("sound/mixkit-european-forest-ambience-1213.wav");
-let seaWavesAudio = new Audio("sound/mixkit-sea-waves-ambience-1189.wav");
-let swampAudio = new Audio("sound/mixkit-swamp-and-jungle-birds-ambience-325.wav");
+let forestAudio = new Audio("sound/mixkit-european-forest-ambience-1213.mp3");
+let seaWavesAudio = new Audio("sound/mixkit-sea-waves-ambience-1189.mp3");
+let swampAudio = new Audio("sound/mixkit-swamp-and-jungle-birds-ambience-325.mp3");
 
 //DEFAULT VOLUME
 
